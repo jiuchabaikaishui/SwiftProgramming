@@ -328,10 +328,10 @@ if age < 0 {
  也可以调用该preconditionFailure(_:file:line:)函数来指示发生了故障。
  */
 let index = 2
-precondition(index > 0, "索引必须大于哦")
+precondition(index > 0, "索引必须大于哦！")
 precondition(index > 0)
 if index < 0 {
-    preconditionFailure("索引必须大于哦")
+    preconditionFailure("索引必须大于哦！")
 }
 /*
  注意
