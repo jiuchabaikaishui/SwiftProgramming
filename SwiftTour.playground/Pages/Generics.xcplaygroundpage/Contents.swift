@@ -32,3 +32,5 @@ func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool whe
 }
 anyCommonElements([1, 2, 3], [3])
 //: <T: Equatable>与<T>... where T: Equatable两种写法效果一样
+
+//: [上一章](@previous)

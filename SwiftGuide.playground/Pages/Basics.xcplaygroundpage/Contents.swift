@@ -337,3 +337,5 @@ if index < 0 {
  注意
  如果以unchecked 模式（-Ounchecked）编译，则不检查条件。编译器假定前置条件始终为true，并相应地优化代码。但是，fatalError(_:file:line:)无论优化设置如何，该功能始终会执行暂停。
  */
+
+//: [下一章](@next)

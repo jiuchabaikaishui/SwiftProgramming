@@ -77,3 +77,5 @@ struct Card {
         return "\(suit.simpleDescription())\(rank.simpleDescription())"
     }
 }
+
+//: [上一章](@previous)   [下一章](@next)

@@ -101,3 +101,5 @@ TriangleAndSquare(size: 50.0, name: "test")
 let optionalSquare: Square? = Square(name: "optional", length: 4.0)
 let sideLength = optionalSquare?.sideLength
 
+//: [上一章](@previous)   [下一章](@next)
+

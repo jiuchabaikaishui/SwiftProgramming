@@ -53,3 +53,5 @@ extension Double {
 //: 可以用协议名向使用其他类型名一样定义变量、属性，这样的变量、属性能够存储任意遵循协议的对象，但是只能访问协议定义的属性与方法。
 var protocolValue: ExampleProtocol = 5
 //protocolValue += 2//(不能执行协议中未定义的操作)
+
+//: [上一章](@previous)   [下一章](@next)

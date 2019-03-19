@@ -55,3 +55,5 @@ func fridgeContains(food: String) -> Bool {
 fridgeContains(food: "banana")
 print(fridgeIsOpen)
 
+//: [上一章](@previous)   [下一章](@next)
+
