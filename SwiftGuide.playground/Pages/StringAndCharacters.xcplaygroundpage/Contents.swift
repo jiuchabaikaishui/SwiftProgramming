@@ -172,12 +172,78 @@ let beginning = greetin[..<inde]
 
 let newString = String(beginning)
 
+//: 字符串和字符平等用“等于”运算符（==）和“不等于”运算符（!=）检查，在比较操作符中描述：
 let quotation1 = "We're a lot alike, you and I."
 let sameQuotation = "We're a lot alike, you and I."
 if quotation1 == sameQuotation {
     print("These two strings are considered equal")
 }
 
+//: LATIN SMALL LETTER E WITH ACUTE（U+00E9）在规范上等效于LATIN SMALL LETTER E（U+0065）后跟COMBINING ACUTE ACCENT（U+0301）。这两个扩展的字形集合都是表示字符é的有效方式，因此它们被认为是等价的：
+let eAcuteQuestion = "Voulez-vous un caf\u{E9}?"
+let combinedEAcuteQuestion = "Voulez-vous un caf\u{65}\u{301}?"
+if eAcuteQuestion == combinedEAcuteQuestion {
+    print("These two strings are considered equal")
+}
+
+//: LATIN CAPITAL LETTER A（U+0041或"A"），如英语中所使用的，并不等同于俄语中使用的CYRILLIC CAPITAL LETTER A（U+0410或"А"）。字符在视觉上相似，但不具有相同的语言含义：
+let latinCapitalLetterA: Character = "\u{41}"
+let cyrillicCapitalLetterA: Character = "\u{0410}"
+if latinCapitalLetterA != cyrillicCapitalLetterA {
+    print("These two characters are not equivalent.")
+}
+
+let romeoAndJuliet = [
+    "Act 1 Scene 1: Verona, A public place",
+    "Act 1 Scene 2: Capulet's mansion",
+    "Act 1 Scene 3: A room in Capulet's mansion",
+    "Act 1 Scene 4: A street outside Capulet's mansion",
+    "Act 1 Scene 5: The Great Hall in Capulet's mansion",
+    "Act 2 Scene 1: Outside Capulet's mansion",
+    "Act 2 Scene 2: Capulet's orchard",
+    "Act 2 Scene 3: Outside Friar Lawrence's cell",
+    "Act 2 Scene 4: A street in Verona",
+    "Act 2 Scene 5: Capulet's mansion",
+    "Act 2 Scene 6: Friar Lawrence's cell"
+]
+
+//: 可以使用数组中的hasPrefix(_:)方法来计算romeoAndJuliet中播放的第1幕中的场景数量：
+let act1SceneCount  = romeoAndJuliet.filter { (item) -> Bool in
+    return item.hasPrefix("Act 1 ")
+    }.count
+print("There are \(act1SceneCount) scenes in Act 1")
+
+//: 使用该hasSuffix(_:)方法计算在Capulet’s mansion和Friar Lawrence’s cell发生的场景数量
+var mansionCount = 0
+var cellCount = 0
+for item in romeoAndJuliet {
+    if item.hasSuffix("Capulet’s mansion") {
+        mansionCount += 1
+    } else if item.hasSuffix("Friar Lawrence’s cell") {
+        cellCount += 1
+    }
+}
+print("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
+
+//: 可以通过遍历String的utf8属性来访问UTF-8表示。此属性的类型String.UTF8View是无符号8位（UInt8）值的集合，对于字符串的UTF-8表示形式，每个字节对应一个值：
+let dogString = "Dog‼🐶"
+for codeUnit in dogString.utf8 {
+    print("\(codeUnit) ", terminator: "")
+}
+print("")
+
+//: 可以通过遍历String的utf16属性来访问UTF-16表示。此属性的类型String.UTF16View是无符号16位（UInt16）值的集合，对于字符串的UTF-16表示形式，每个16位代码单元对应一个值：
+for codeUnit in dogString.utf16 {
+    print("\(codeUnit) ", terminator: "")
+}
+print("")
+for scalar in dogString.unicodeScalars {
+    print("\(scalar.value) ", terminator: "")
+}
+print("")
+for scalar in dogString.unicodeScalars {
+    print("\(scalar)")
+}
 
 
 

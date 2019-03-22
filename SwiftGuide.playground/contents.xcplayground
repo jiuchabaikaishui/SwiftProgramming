@@ -2,6 +2,8 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='Basics'/>
-        <page name='Untitled Page'/>
+        <page name='BasicOprators'/>
+        <page name='StringAndCharacters'/>
+        <page name='CollectionTypes'/>
     </pages>
 </playground>
