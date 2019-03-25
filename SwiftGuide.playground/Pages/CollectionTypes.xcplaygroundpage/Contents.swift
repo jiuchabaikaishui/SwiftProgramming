@@ -116,7 +116,105 @@ for genre in favoriteGenres.sorted() {
     print("\(genre)")
 }
 
+/*:
+ - 使用intersection(_:)方法创建一个仅包含两个组共有的值的新集。
+ - 使用symmetricDifference(_:)方法创建一个新集合，其中包含任一集合中的值，但不包含任两个集合都存在的值。
+ - 使用union(_:)方法创建包含两个集中所有值的新集。
+ - 使用此subtracting(_:)方法创建一个值不在指定集中的新集。
+ */
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+oddDigits.union(evenDigits).sorted()
+oddDigits.intersection(evenDigits).sorted()
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
 
+
+/*:
+ - 使用“is equal”运算符（==）来确定两个集合是否包含所有相同的值。
+ - 使用此isSubset(of:)方法确定集合的所有值是否都包含在指定的集合中。
+ - 使用此isSuperset(of:)方法确定集合是否包含指定集合中的所有值。
+ - 使用isStrictSubset(of:)或isStrictSuperset(of:)方法确定集合是否是指定集合的子集或超集，但不等于。
+ - 使用该isDisjoint(with:)方法确定两个集合是否没有共同的值。
+ */
+let houseAnimals: Set = ["🐶", "🐱"]
+let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+let cityAnimals: Set = ["🐦", "🐭"]
+houseAnimals.isSubset(of: farmAnimals)//ture
+farmAnimals.isSuperset(of: houseAnimals)//ture
+farmAnimals.isDisjoint(with: cityAnimals)//ture
+
+//: 与数组一样，您可以Dictionary使用初始化程序语法创建某个类型的空：
+//var namesOfIntegers: Dictionary<String, Int> = Dictionary()
+var namesOfIntegers = [Int: String]()
+
+//: 如果上下文已经提供了类型信息，您可以创建一个空字典，其中包含一个空的字典文字，其写为[:]（一对方括号内的冒号）：
+namesOfIntegers[16] = "sixteen"
+namesOfIntegers = [:]
+
+//: 以下示例创建一个字典来存储国际机场的名称。在这个字典中，key是三个字母的国际航空运输协会代码，值是机场名称：
+//var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+
+//: 与数组一样，如果要使用其键和值具有一致类型的字典文字对其进行初始化，则不必编写字典类型。初始化airports可能是用较短的形式编写的
+var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+
+//: 与数组一样，可以通过检查只读属性count来查找Dictionary中的项目数：
+print("The airports dictionary contains \(airports.count) items.")
+
+//: 使用Boolean类型的isEmpty属性作为检查count属性是否等于0的快捷方式：
+if airports.isEmpty {
+    print("The airports dictionary is empty.")
+} else {
+    print("The airports dictionary is empty.")
+}
+
+//: 可以使用下标语法将新项添加到字典中。使用适当类型的新键作为下标索引，并指定适当类型的新值：
+airports["LHR"] = "London"
+
+//: 还可以使用下标语法来更改与特定键关联的值：
+airports["LHR"] = "London Heathrow"
+
+//: updateValue(_:forKey:)方法返回字典值类型的可选值。例如，对于存储String值的字典，该方法返回type String?或“optional String”的值。如果在更新之前存在该键则此可选值包含该键的旧值，如果不存在任何键或则为nil：
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+    print("The old value for DUB was \(oldValue).")
+}
+
+//: 还可以使用下标语法从字典中检索特定键的值。因为可以请求不存在值的键，所以字典的下标返回字典值类型的可选值。如果字典包含所请求键的值，则下标返回包含该键的现有值的可选值。否则，返回nil：
+if let airportName = airports["DUB"] {
+    print("The name of the airport is \(airportName).")
+} else {
+    print("That airport is not in the airports dictionary.")
+}
+
+//: 可以使用下标语法通过nil为该键指定值来从字典中删除键值对：
+airports["APL"] = "Apple International"
+airports["APL"] = nil
+
+//: 使用removeValue(forKey:)方法从字典中删除键值对。此方法删除键值对（如果存在）并返回已删除的值，如果不存在值则返回nil：
+if let removedValue = airports.removeValue(forKey: "DUB") {
+    print("The removed airport's name is \(removedValue).")
+} else {
+    print("The airports dictionary does not contain a value for DUB.")
+}
+
+//: 可以用字典遍历键值对for- in环。字典中的每个项都作为元组(key, value)返回，可以将元组的成员分解为临时常量或变量，作为迭代的一部分：
+for (airportCode, airportName) in airports {
+    print("\(airportCode): \(airportName)")
+}
+
+
+//: 还可以通过访问字典的键keys和values属性来检索字典的键或值的可迭代集合
+for airportCode in airports.keys {
+    print("Airport code: \(airportCode)")
+}
+for airportName in airports.values {
+    print("Airport name: \(airportName)")
+}
+
+//: 如果需要API使用字典的键或值来创建Array实例，请使用keys或values属性初始化新数组：
+let airportCodes = [String](airports.keys)
+let airportNames = [String](airports.values)
 
 
 //: [Previous](@previous)    [Next](@next)
