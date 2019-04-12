@@ -5,5 +5,8 @@
         <page name='BasicOprators'/>
         <page name='StringAndCharacters'/>
         <page name='CollectionTypes'/>
+        <page name='ControlFlow'/>
+        <page name='Functions'/>
+        <page name='Closures'/>
     </pages>
 </playground>
