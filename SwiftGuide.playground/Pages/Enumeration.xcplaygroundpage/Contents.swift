@@ -113,5 +113,4 @@ let value = evaluate(expression: ArithmeticExpression.addition(ArithmeticExpress
 print(value)
 
 
-
 //: [Previous](@previous)    [Next](@next)
