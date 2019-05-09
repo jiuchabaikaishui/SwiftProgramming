@@ -10,5 +10,9 @@
         <page name='Closures'/>
         <page name='Enumeration'/>
         <page name='StructuresAndClasses'/>
+        <page name='Properties'/>
+        <page name='Methods'/>
+        <page name='Subscripts'/>
+        <page name='Inheritance'/>
     </pages>
 </playground>
