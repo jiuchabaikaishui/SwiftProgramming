@@ -2,17 +2,18 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='Basics'/>
-        <page name='BasicOprators'/>
-        <page name='StringAndCharacters'/>
         <page name='CollectionTypes'/>
-        <page name='ControlFlow'/>
-        <page name='Functions'/>
+        <page name='BasicOprators'/>
         <page name='Closures'/>
+        <page name='ControlFlow'/>
         <page name='Enumeration'/>
-        <page name='StructuresAndClasses'/>
-        <page name='Properties'/>
-        <page name='Methods'/>
-        <page name='Subscripts'/>
+        <page name='Functions'/>
         <page name='Inheritance'/>
+        <page name='Methods'/>
+        <page name='Properties'/>
+        <page name='StringAndCharacters'/>
+        <page name='StructuresAndClasses'/>
+        <page name='Subscripts'/>
+        <page name='Initialization'/>
     </pages>
 </playground>
