@@ -100,6 +100,71 @@ class ShoppingListItem {
 }
 var item = ShoppingListItem()
 
+//struct Size {
+//    var width = 0.0, height = 0.0
+//}
+//let twoByTwo = Size(width: 2.0, height: 2.0)
+
+struct Size {
+    var width = 0.0, height = 0.0
+}
+struct Point {
+    var x = 0.0, y = 0.0
+}
+
+struct Rect {
+    var origin = Point()
+    var size = Size()
+    init() {  }
+    init(origin: Point, size: Size) {
+        self.origin = origin
+        self.size = size
+    }
+    init(center: Point, size: Size) {
+        let originX = center.x - size.width/2.0
+        let originY = center.y - size.height/2.0
+        self.init(origin: Point(x: originX, y: originY), size: size)
+    }
+}
+
+let basicRect = Rect()
+
+let originRect = Rect(origin: Point(x: 2.0, y: 2.0), size: Size(width: 5.0, height: 5.0))
+
+let centerRect = Rect(center: Point(x: 4.0, y: 4.0), size: Size(width: 3.0, height: 3.0))
+
+class Vehicle {
+    var numberOfWheels = 0
+    var description: String {
+        return "\(numberOfWheels) wheel(s)"
+    }
+}
+
+let vehicle = Vehicle()
+print(vehicle.description)
+
+class Bicycle: Vehicle {
+    override init() {
+        super.init()
+        numberOfWheels = 2
+    }
+}
+
+let bicycle = Bicycle()
+print(bicycle.description)
+
+class Hoverboard: Vehicle {
+    var color: String
+    init(color: String) {
+        self.color = color
+    }
+    override var description: String {
+        return "\(super.description) in a beautiful \(color)"
+    }
+}
+
+let hoverboard = Hoverboard(color: "silver")
+print(hoverboard.description)
 
 
 
