@@ -252,6 +252,7 @@ if valueChanged == nil {
     print("\(pi) conversion to Int does not maintain value")
 }
 
+//: 此初始化检查传递给初始化的species值是否为空字符串。如果发现是空字符串，则触发初始化失败。否则，设置species属性的值，初始化成功：
 struct Animal {
     var species: String
     init?(species: String) {
@@ -260,16 +261,19 @@ struct Animal {
     }
 }
 
+//: 用此可失败的初始化程序尝试初始化新Animal实例并检查初始化是否成功：
 let someCreature = Animal(species: "Giraffe")
 if let giraffe = someCreature {
     print("An animal was initialized with a species of \(giraffe.species)")
 }
 
+//: 将空字符串值传递给failable初始化程序的species参数，则初始化程序会触发初始化失败：
 let anonymousCreature = Animal(species: "")
 if anonymousCreature == nil {
     print("The anonymous creature could not be initialized")
 }
 
+//: 可失败的初始化用表示温度符号的Character值查找适当的枚举值：
 //enum TemperatureUnit {
 //    case kelvin, celsius, fahrenheit
 //    init?(symbol: Character) {
@@ -286,6 +290,7 @@ if anonymousCreature == nil {
 //    }
 //}
 
+//: 三种可能的状态选择适当的枚举，并在参数与以下状态不匹配时导致初始化失败：
 //let fahrenheitUnit = TemperatureUnit(symbol: "F")
 //if fahrenheitUnit != nil {
 //    print("This is a defined temperature unit, so initialization succeeded.")
@@ -295,6 +300,7 @@ if anonymousCreature == nil {
 //    print("This is not a defined temperature unit, so initialization failed.")
 //}
 
+//: TemperatureUnit类型的Character原始值并利用init?(rawValue:)初始化程序：
 enum TemperatureUnit: Character {
     case kelvin = "K", celsius = "C", fahrenheit = "F"
 }
@@ -307,6 +313,7 @@ if unknownUnit == nil {
     print("This is not a defined temperature unit, so initialization failed.")
 }
 
+//: CartItem引入了一个存储常量属性quantity，并确保此属性的值至少为1：
 class Product {
     var name: String
     init?(name: String) {
@@ -323,22 +330,26 @@ class CartItem: Product {
     }
 }
 
+//: 创建CartItem具有非空名称和数量1或更大的实例，则初始化成功：
 if let twoSocks = CartItem(name: "sock", quantity: 2) {
     print("Item: \(twoSocks.name), quantity: \(twoSocks.quantity)")
 }
 
+//: 创建quantity值为0的CartItem实例，则CartItem初始化程序会导致初始化失败：
 if let zeroShirts = CartItem(name: "shirt", quantity: 0) {
     print("Item: \(zeroShirts.name), quantity: \(zeroShirts.quantity)")
 } else {
     print("Unable to initialize zero shirts")
 }
 
+//: 使用空name值创建CartItem实例，则超类Product初始化程序会导致初始化失败：
 if let oneUnnamed = CartItem(name: "", quantity: 1) {
     print("Item: \(oneUnnamed.name), quantity: \(oneUnnamed.quantity)")
 } else {
     print("Unable to initialize one unnamed product")
 }
 
+//: 此类对可以使用非空字符串值或nil但不能为空字符串的name属性进行初始化的文档进行构建：
 class Document {
     var name: String?
     init() {}
@@ -347,5 +358,53 @@ class Document {
         self.name = name
     }
 }
+
+//: 覆盖确保AutomaticallyNamedDocument实例的name具有初始值"[Untitled]"：
+class AutomaticallyNamedDocument: Document {
+    override init() {
+        super.init()
+        self.name = "[Untitled]"
+    }
+    override init(name: String) {
+        super.init()
+        if name.isEmpty {
+            self.name = "[Untitled]"
+        } else {
+            self.name = name
+        }
+    }
+}
+
+//: 在初始化期间使用来自其超类的可失败初始化器init(name:)
+class UntitledDocument: Document {
+    override init() {
+        super.init(name: "[Untitled]")!
+    }
+}
+
+//: boardColors数组使用闭包设置它的初始化颜色值：
+struct Chessboard {
+    var boardColors: [Bool] = {
+        var temporaryBoard = [Bool]()
+        var isBlack = false
+        for i in 1...8 {
+            for j in 1...8 {
+                temporaryBoard.append(isBlack)
+                isBlack = !isBlack
+            }
+            isBlack = !isBlack
+        }
+        return temporaryBoard
+    }()
+    func squareIsBlackAt(row: Int, column: Int) -> Bool {
+        return boardColors[row*8 + column]
+    }
+}
+
+//: 数组值存储在boardColors中并可以使用squareIsBlackAt(row:column:)函数查询：
+let board = Chessboard()
+print(board.squareIsBlackAt(row: 0, column: 1))
+print(board.squareIsBlackAt(row: 7, column: 7))
+
 
 //: [Previous](@previous)    [Next](@next)
