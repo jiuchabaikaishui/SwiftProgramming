@@ -15,5 +15,6 @@
         <page name='StructuresAndClasses'/>
         <page name='Subscripts'/>
         <page name='Initialization'/>
+        <page name='Deinitialization'/>
     </pages>
 </playground>
