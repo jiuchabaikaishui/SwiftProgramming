@@ -16,6 +16,5 @@
         <page name='Subscripts'/>
         <page name='Initialization'/>
         <page name='Deinitialization'/>
-        <page name='OptionalChaining'/>
     </pages>
 </playground>
