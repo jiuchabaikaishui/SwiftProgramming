@@ -11,7 +11,6 @@ class MediaItem {
     }
 }
 
-
 //: 第一个子类Movie包含有关电影或电影的其他信息。它在MediaItem基类的基础上添加了一个director属性，并带有相应的初始化程序。第二个子类Song，在基类之上添加一个artist属性和初始值设定项：
 class Movie: MediaItem {
     var director: String
