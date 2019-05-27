@@ -20,5 +20,6 @@
         <page name='ErrorHandling'/>
         <page name='TypeCasting'/>
         <page name='NestedTypes'/>
+        <page name='Extensions'/>
     </pages>
 </playground>
