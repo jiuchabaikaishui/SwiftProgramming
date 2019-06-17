@@ -24,6 +24,6 @@
         <page name='Protocols'/>
         <page name='Generics'/>
         <page name='OpaqueTypes'/>
-        <page name='AutomaticReferenceCounting'/>
+        <page name='AccessControl'/>
     </pages>
 </playground>
