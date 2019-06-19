@@ -84,5 +84,4 @@ automatic.currentSpeed = 35.0
 print(automatic.description)
 
 
-
 //: [Previous](@previous)    [Next](@next)

@@ -2,10 +2,54 @@
 import Foundation
 
 //: 使用for-in循环迭代序列，比如数组的中的项、数字范围、字符串中的字符：
-let names = ["张三", "李四", "王五", "赵六"]
+let names = ["Anna", "Alex", "Brian", "Jack"]
 for name in names {
-    print(name)
+    print("Hello, \(name)!")
 }
+
+//: 字典的键被分解为一个animalName常量，并且字典的值被分解为一个legCount常量：
+let numberOfLegs = ["spider": 8, "ant": 6, "cat": 4]
+for (animalName, legCount) in numberOfLegs {
+    print("\(animalName)s have \(legCount) legs")
+}
+
+//: 可以使用for-in实现具有数字范围的循环。此示例打印五次表中的前几个条目：
+for index in 1...5 {
+    print("\(index) times 5 is \(index * 5)")
+}
+
+//: 如果不需要序列中的每个值，则可以使用下划线代替变量名来忽略这些值：
+let base = 3
+let power = 10
+var answer = 1
+for _ in 1...power {
+    answer *= base
+}
+print("\(base) to the power of \(power) is \(answer)")
+
+
+//: 蛇梯棋
+let finalSquare = 25
+var board = [Int](repeating: 0, count: finalSquare + 1)
+
+board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+
+var square = 0
+var diceRoll = 0
+while square < finalSquare {
+    diceRoll += 1
+    if diceRoll == 7 {
+        diceRoll = 1
+    }
+    square += diceRoll
+    if square < board.count {
+        square += board[square]
+    }
+}
+print("Game over!")
+
+
 for i in 0...1 {
     print(i)
 }
