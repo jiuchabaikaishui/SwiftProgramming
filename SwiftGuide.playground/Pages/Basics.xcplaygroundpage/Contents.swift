@@ -1,15 +1,15 @@
 //: # 基础
 /*:
  Swift是iOS，macOS，watchOS和tvOS应用程序开发的新编程语言。尽管如此，Swift的许多部分对在C和Objective-C中有开发经验的都很熟悉。
- 
- Swift提供了自己的所有基本的C和Objective-C类型的版本，包括Int为整数，Double和Float为浮点值，Bool为布尔值，String为文本数据。Swift还提供了三种主要集合类型的强大版本Array，Set和Dictionary。
- 
- 与C一样，Swift使用变量来存储和通过标识名称引用值。Swift还广泛使用其值无法更改的变量，这些被称为常量，并且比C中的常量更强大。当使用不需要更改的值时，在整个Swift中使用常量来使代码更安全，更清晰。
- 
+
+ Swift包含了 C 和 Objective-C 上所有基础数据类型，包括Int为整数，Double和Float为浮点值，Bool为布尔值，String为文本数据。Swift还提供了三种强大的集合类型的Array，Set和Dictionary。
+
+ 与C一样，Swift使用变量来存储和通过标识名称引用值。Swift还广泛使用其值无法更改的变量，这些被称为常量，并且比C中的常量更强大。在 Swift 中，当使用不需要更改的值时，那使用常量可以让你的代码更加安全并且更清晰地表达你的意图。
+
  除了熟悉的类型之外，Swift还引入了Objective-C中没有的高级类型，例如元组。元组可以创建和传递值的分组，可以使用元组将函数中的多个值作为单个复合值返回。
- 
- Swift还引入了可选类型，它们处理缺少值。可选类型要么“有是一个值，它等于X ”要么“有没有一个价值可言”。使用optionals类似于nil在Objective-C中使用指针，但它们适用于任何类型，而不仅仅是类。可选类型对象比Objective-C中的nil指针更安全，更具表现力，它们是许多Swift强大功能的核心。
- 
+
+ Swift还引入了可选类型，用于处理值缺失的情况。可选类型要么“有是一个值，它等于X ”要么“有没有一个价值可言”。使用optionals类似于nil在Objective-C中使用指针，但它们适用于任何类型，而不仅仅是类。可选类型对象比Objective-C中的nil指针更安全，更具表现力，它们是许多Swift强大功能的核心。
+
  Swift是一种类型安全的语言，这意味着该语言可以帮助您清楚代码可以使用的值的类型。如果部分代码需要一个 String，则类型安全会阻止把Int错误地传递它。同样，类型安全性可防止意外地将可选类型的String传递给需要非可选类型的String的代码。类型安全性可帮助在开发过程中尽早捕获并修复错误。
  */
 
@@ -127,19 +127,19 @@ let pi = 3.14//Double
 let otherPi = 3 + 0.14//Double
 
 
-//: ## 数字进制
+//: ## 数值型字面量
 /*
- 整数进制可以写成：
+ 整数字面量可以写成：
  
  _ 十进制数，无前缀
  _ 二进制数，有0b前缀
  _ 八进制数，有0o前缀
  _ 十六进制数，有0x前缀
  */
-let dInt = 10//10
-let bInt = 0b10//2
-let oInt = 0o10//8
-let xInt = 0x10//16
+let decimalInteger = 17
+let binaryInteger = 0b10001       // 二进制的17
+let octalInteger = 0o21           // 八进制的17
+let hexadecimalInteger = 0x11     // 十六进制的17
 
 /*
  浮点进制可以是十进制（没有前缀）或十六进制（带0x前缀）。它们必须始终在小数点的两边都有一个数字（或十六进制数字）。十进制浮点数也可以有一个可选的指数，用大写或小写表示e; 十六进制浮点数必须有一个指数，用大写或小写表示p
@@ -214,6 +214,7 @@ if i == 1 {
  分解元组时忽略元组的_部分。
  从零开始的索引号访问元组中的各个元素值。
  在元组中命名元素，则可以使用元素名称来访问这些元素的值。
+ 可以在定义元组的时候给单个元素命名，给元组中的元素命名后，你可以通过名字来获取这些元素的值。
  */
 let http404Error = (404, "Not Found")
 let (statusCode, statusMessage) = http404Error
@@ -222,6 +223,9 @@ print("message:\(statusMessage)")
 let (code, _) = http404Error
 print("code:\(code)")
 print("code:\(http404Error.0), message:\(http404Error.1)")
+let http200Status = (statusCode: 200, description: "OK")
+print("The status code is \(http200Status.statusCode)")
+print("The status message is \(http200Status.description)")
 
 
 //: ## 可选值
@@ -231,6 +235,16 @@ print("code:\(http404Error.0), message:\(http404Error.1)")
  */
 let possibleNumber = "123"
 let convertedNumber = Int(possibleNumber)// 可选的Int
+
+// 可以给可选变量赋值为 nil 来表示它没有值：
+var serverResponseCode: Int? = 404
+// serverResponseCode 包含一个可选的 Int 值 404
+serverResponseCode = nil
+// serverResponseCode 现在不包含值
+
+// 如果声明一个可选常量或者变量但是没有赋值，它们会自动被设置为 nil：
+var surveyAnswer: String?
+// surveyAnswer 被自动设置为 nil
 
 //: ### 解包
 /*
@@ -264,6 +278,17 @@ let assumeString: String! = "隐式解包字符串"
 let implicitString: String = assumeString
 if assumeString != nil {
     print(assumeString)
+}
+if let definiteString = assumeString {
+    print(definiteString)
+}
+
+/*
+ 仍然可以把隐式解析可选类型当做普通可选类型来判断它是否包含值：
+ 也可以在可选绑定中使用隐式解析可选类型来检查并解析它的值：
+ */
+if assumeString != nil {
+    print(assumeString!)
 }
 if let definiteString = assumeString {
     print(definiteString)

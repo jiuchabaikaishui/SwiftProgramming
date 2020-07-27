@@ -40,7 +40,7 @@ do {
 let printerSuccess = try? send(job: 1002, toPrinter: "Mergenthaler")
 let printerFailure = try? send(job: 1003, toPrinter: "Never Has Toner")
 
-//: 用defer写的代码块是在函数中的所有其它代码后只在函数返回之前执行。无论函数是否抛出错误，都会执行代码。可以使用defer编写设置和清理代码，即使它们需要在不同时间执行。
+//: 用defer写的代码块是在函数中的所有其它代码后只在函数返回之前执行。无论函数是否抛出错误，都会执行代码。可以使用defer把函数调用之初就要执行的代码和函数调用结束时的扫尾代码写在一起，虽然这两者的执行时机截然不同。
 var fridgeIsOpen = false
 let fridgeContent = ["milk", "eggs", "leftovers"]
 func fridgeContains(food: String) -> Bool {

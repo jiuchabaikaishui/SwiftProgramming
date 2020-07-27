@@ -15,9 +15,9 @@ var shape = Shape()
 shape.numbersOfSides = 4
 print(shape.simpleDescription())
 
-//: 每个属性都需要一个赋值 - 在其声明中（如同numberOfSides）或在初始化器中
+//: 每个属性都需要一个赋值 - 在其声明中（如同numberOfSides）或在构造器中
 //: 如果想要在对象销毁时清理一些东西，就使用deinit
-//: 子类在其类名后面包含它们的父类名称，用冒号分隔。类不需要子类化任何标准根类，因此可以根据需要包含或省略超类。
+//: 子类在其类名后面包含它们的父类名称，用冒号分隔。创建类的时候并不需要一个标准的根类，所以你可以根据需要添加或者忽略父类
 //: 覆盖父类的实现的方法在子类上用override标记 - 意外地覆盖方法，而不使用override会被编译器检测为错误。编译器还检测具有override的方法实际上不覆盖父类中的任何方法。
 class NameShape: Shape {
     var name: String
@@ -70,13 +70,13 @@ class EquilateralTriangle: NameShape {
 }
 
 /*:
- 注意初始化程序的三个基本步骤
- _设置子类属性
- _初始化父类
- _更改父类属性以及做一些其他操作
+ 注意构造器的三个基本步骤
+ - 设置子类属性
+ - 初始化父类
+ - 更改父类属性以及做一些其他操作
  
  在setter中，新值具有隐式名称newValue，也可以在set后面括号中提供显式名称
- 不需要计算属性但仍需要提供在设置新值之前和之后运行的代码，使用willSet和didSet。提供的代码在初始化程序之外值更改时运行。
+ 不需要计算属性但仍需要提供在设置新值之前和之后运行的代码，使用willSet和didSet。提供的代码在构造器之外值更改时运行。
 */
 class TriangleAndSquare {
     var triangle: EquilateralTriangle {

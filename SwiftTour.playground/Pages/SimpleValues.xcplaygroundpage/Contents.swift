@@ -49,7 +49,7 @@ shoppingList[0] = "草鱼"
 var occupations = ["张三": "厨师", "李四": "iOS程序员", ]
 occupations["lis"] = "前台"
 
-//: 创建空数组或字典，请使用初始化程序语法。
+//: 创建空数组或字典，请使用构造器语法。
 let emptyArray = [String]()
 let emptyDictionary = [String: Int]()
 

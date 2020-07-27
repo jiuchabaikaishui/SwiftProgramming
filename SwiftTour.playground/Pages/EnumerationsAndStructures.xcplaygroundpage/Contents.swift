@@ -22,12 +22,12 @@ enum Rank: Int {
 }
 
 //: 默认情况下，Swift从0开始并每次递增1为枚举分配原始值，但可以通过显式指定值来更改此行为。还可以使用字符串或浮点数作为枚举的原始类型。使用该rawValue属性可以访问枚举实例的原始值。
-//: 使用init?(rawValue:)初始化程序从原始值创建枚举的实例。它返回与原始值匹配的枚举，或者返回nil如果没有匹配的情况的话。
+//: 使用init?(rawValue:)构造器从原始值创建枚举的实例。它返回与原始值匹配的枚举，或者返回nil如果没有匹配的情况的话。
 if let convertedRank = Rank(rawValue: 3) {
     print(convertedRank.simpleDescription())
 }
 
-//: 枚举的值是实际值，而不仅仅是编写其原始值的另一种方式。实际上，在没有有意义的原始值的情况下，不必提供原始值。
+//: 枚举的关联值是实际值，并不是原始值的另一种表达方法。实际上，在没有有意义的原始值的情况下，不必提供原始值。
 enum Suit {
     case spades, hearts, clubs, diamonds
     func simpleDescription() -> String {
@@ -54,7 +54,7 @@ enum Suit {
 let hearts = Suit.hearts
 print(hearts.simpleDescription())
 
-//: 如果枚举具有原始值，则这些值将作为声明的一部分确定，这意味着特定枚举实例的具有相同的原始值。再就是可以使值与案例相关联 - 这些值在创建实例时确定，并且对于枚举案例的每个实例它们可以不同。您可以将关联值视为与枚举案例实例的存储属性相似。
+//: 如果枚举具有原始值，则这些值将作为声明的一部分确定，这意味着特定枚举实例的具有相同的原始值。再就是可以为枚举成员设定关联值 - 这些值在创建实例时确定，并且对于枚举案例的每个实例它们可以不同。您可以将关联值视为与枚举成员实例的存储属性相似。
 enum ServerResponse {
     case result(String, String)
     case failure(String)
@@ -69,7 +69,7 @@ case let .failure(message):
 }
 
 
-//: struct创建的结构。结构支持许多与类相同的行为，包括方法和初始化器，但是不能继承。结构和类之间最重要的区别之一是结构在代码中传递时总是被复制通过值传递，但类是通过引用传递的。
+//: struct创建的结构。结构支持许多与类相同的行为，包括方法和构造器，但是不能继承。结构和类之间最重要的区别之一是结构在代码中传递时总是被复制通过值传递，但类是通过引用传递的。
 struct Card {
     var rank: Rank
     var suit: Suit
