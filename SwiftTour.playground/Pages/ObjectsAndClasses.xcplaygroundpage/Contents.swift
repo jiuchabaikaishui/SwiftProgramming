@@ -48,6 +48,21 @@ class Square: NameShape {
 let square = Square(name: "测试", length: 3.0)
 print("正方形\(square.name)的面积为\(square.area())")
 
+class Circle: NameShape {
+    var radius: Double
+    init(name: String, radius: Double) {
+        self.radius = radius
+        super.init(name: name)
+    }
+    
+    func area() -> Double {
+        return 3.14*radius*radius
+    }
+    override func simpleDescription() -> String {
+        return "我是半径为\(radius)的圆形"
+    }
+}
+
 //: 属性还可以包含getter和setter
 class EquilateralTriangle: NameShape {
     var sideLength: Double

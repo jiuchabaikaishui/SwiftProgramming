@@ -25,5 +25,7 @@
         <page name='Generics'/>
         <page name='OpaqueTypes'/>
         <page name='AccessControl'/>
+        <page name='AdvancedOperators'/>
+        <page name='AutomaticReferenceCounting '/>
     </pages>
 </playground>
